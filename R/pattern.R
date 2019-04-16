@@ -31,17 +31,17 @@ all_patterns = list(
   `md` = list(
     chunk.begin = '^[\t >]*```+\\s*\\{([a-zA-Z0-9_]+.*)\\}\\s*$',
     chunk.end = '^[\t >]*```+\\s*$',
-    ref.chunk = '^\\s*<<(.+)>>\\s*$', inline.code = '(?<!(^|\n)``)`r[ #]([^`]+)\\s*`'),
+    ref.chunk = '^\\s*<<(.+)>>\\s*$', inline.code = '(?<!(^|\n)``)`r[ #](([^`]|\`)+)\\s*`'),
 
   `rst` = list(
     chunk.begin = '^\\s*[.][.]\\s+\\{r(.*)\\}\\s*$',
     chunk.end = '^\\s*[.][.]\\s+[.][.]\\s*$', chunk.code = '^\\s*[.][.]',
-    ref.chunk = '^\\.*\\s*<<(.+)>>\\s*$', inline.code = ':r:`([^`]+)`'),
+    ref.chunk = '^\\.*\\s*<<(.+)>>\\s*$', inline.code = ':r:`(([^`]|\`)+)`'),
 
   `asciidoc` = list(
     chunk.begin = '^//\\s*begin[.]rcode(.*)$', chunk.end = '^//\\s*end[.]rcode\\s*$',
     chunk.code = '^//+', ref.chunk = '^\\s*<<(.+)>>\\s*$',
-    inline.code = '`r +([^`]+)\\s*`|[+]r +([^+]+)\\s*[+]',
+    inline.code = '`r +(([^`]|\`)+)\\s*`|[+]r +([^+]+)\\s*[+]',
     inline.comment = '^//.*'),
 
   `textile` = list(
@@ -51,6 +51,7 @@ all_patterns = list(
     inline.code = '@r +([^@]+)\\s*@',
     inline.comment = '^###[.].*')
 )
+
 
 .sep.label = '^(#|--)+\\s*(@knitr|----+)(.*?)-*\\s*$'  # pattern for code chunks in an R script
 
